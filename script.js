@@ -1,23 +1,29 @@
 'use strict';
 
 
-const searchInput = null;
 const bookList = [
   {id: 1,
   author: 'Charles Dickens' ,
   title: 'Oliver Twist'},
   { id:2,
-  author: 'WIlliam Shapespear',
+  author: 'William Shapespear',
   title: 'Hamlet'}
   ];  
 
-function handleKeyPress(input) {
+/* const searchInput = document.children[0].children[1].children[1].children[1]; */
+const searchField = document.getElementById('searchField');
+console.log(searchField);
+
+searchField.addEventListener("keyup", handleKeyPress);
+
+function handleKeyPress(e) {
       /*Ta emot/läsa av värdet i input fältet
       Skicka värdet till searchBooks
       searchBooks returnerar en filtrerad lista
       Filtrerade listan skickas till renderBookList
     */
-  searchBooks(input);
+
+  searchBooks(e.target.value);
 }
 
 function searchBooks(searchTerm) {
@@ -31,13 +37,11 @@ function searchBooks(searchTerm) {
   for (let i = 0; i < bookList.length; i++) {
     const title = bookList[i].title.toLowerCase();
     if(title.indexOf(searchTerm.toLowerCase()) >= 0 ) {
-      filteredList.push(bookList[0]);
+      filteredList.push(bookList[i]);
     }
   }
   renderBookList(filteredList);
 }
-
-handleKeyPress('e');
 
 function renderBookList(list){
   /* Element i HTML- listan visas eller döljs beroende på listans innehåll*/
