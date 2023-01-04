@@ -8,7 +8,6 @@ async function getAll() {
   return result;
 }
 
-
 async function getBookDetails(id) {
   const result = await fetch(url + "/" + id)
     .then((result) => result.json())
